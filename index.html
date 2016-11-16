@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My ToDo APP</title>
+    <title>备忘录 Pro-涵月天 microzz.com</title>
+    <!-- build:css css/combined.css -->
     <link rel="stylesheet" href="node_modules/normalize.css/normalize.css">
     <link rel="stylesheet" href="node_modules/jquery-datetimepicker/build/jquery.datetimepicker.min.css">
     <link rel="stylesheet" href="css/base.css">
+    <!-- endbuild -->
 </head>
 <body>
 <div class="msg">
@@ -16,26 +18,19 @@
 </div>
  <!-- 总容器开始 -->
 <div class="container">
-    <h1>我的Todo</h1>
+    <h1>备忘录Pro</h1>
     <form class="add-task">
         <input name="content"
                type="text"
-               placeholder="e.g. 早上8:00学习Node.js"
-               autofocus
+               placeholder="e.g. 早上8:30学习Node.js"
                autocomplete="off"
+               maxlength="17"
         >
-        <button type="submit">提交
-        </button>
+        <button type="submit">提交</button>
     </form>
 
     <!-- 清单列表开始 -->
     <div class="task-list">
-        <!--<div class="task-item">&lt;!&ndash; 任务开始 &ndash;&gt;-->
-            <!--<span><input type="checkbox"></span>-->
-            <!--<span class="task-content">item content 1</span>-->
-            <!--<span>delete</span>-->
-            <!--<span>detail</span>-->
-        <!--</div>&lt;!&ndash; 任务结束 &ndash;&gt;-->
 
     </div>    <!-- 清单列表结束 -->
 
@@ -47,25 +42,16 @@
     </div><!-- 任务详情结束 -->
 
 </div><!-- 总容器结束 -->
+
 <video class="alerter" src="alert.mp3"></video>
 
+<!-- build:js js/combined.js -->
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
 <script src="node_modules/store/store.min.js"></script>
 <script src="node_modules/jquery-datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
 <script src="node_modules/jquery-datetimepicker/build/jquery.datetimepicker.min.js"></script>
 <script src="js/base.js"></script>
-</body>
-</html>
-
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+<!-- endbuild -->
 
 </body>
 </html>

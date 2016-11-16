@@ -23,6 +23,7 @@
         , $msg_content = $msg.find('.msg-content')
         , $msg_confirm = $msg.find('.confirmed')
         , $alerter = $('.alerter')
+        , $detail_cancel
         ;
 
     init();
@@ -164,6 +165,8 @@
         })
     }
 
+
+
     function on_add_task_form_submit(e) {
         var new_task = {}, $input;
 
@@ -174,7 +177,11 @@
         new_task.content = $input.val();
 
         /*如果新的task的值为空 则直接返回 否则继续执行*/
-        if (!new_task.content)  return;
+        if (!new_task.content) {
+            return;
+        }
+
+
         /*存入新Task*/
         if (add_task(new_task)) {
             // render_task_list();
@@ -220,6 +227,7 @@
         })
     }
 
+
     function get(index) {
         return store.get('task_list')[index];
     }
@@ -264,12 +272,12 @@
         var item = task_list[index];
 
         var tpl =
-            '<form>' +
+            '<form xmlns="http://www.w3.org/1999/html">' +
             '<div class="content">' +
             item.content +
             '</div>' +
             '<div class="input-item">' +
-            '<input style="display: none;" type="text" name="content" value="' + (item.content || '') + '">' +
+            '<input style="display: none;" maxlength="17" type="text" name="content" value="' + (item.content || '') + '">' +
             '</div>' +
             '<div class="input-item">' +
             '<div class="desc">' +
@@ -280,7 +288,7 @@
             '<label>提醒时间</label>' +
             '<input class="datetime" name="remind_date" value="' + (item.remind_date || '') + '" type="text">' +
             '</div>' +
-            '<div class="input-item"><button type="submit">更新</button></div>' +
+            '<div class="input-item"><button type="submit">更新</button><input class="detail-cancel" value="返回" type="button"/></div>' +
             '</form>';
 
         /*清空Task详情模板*/
@@ -294,6 +302,8 @@
         $task_detail_content = $update_form.find('.content');
         /*选中Task Input的元素*/
         $task_detail_content_input = $update_form.find('[name=content]');
+
+        $detail_cancel = $('.detail-cancel');
 
         /*双击内容元素显示Input，隐藏自己*/
         $task_detail_content.on('click', function () {
@@ -312,6 +322,8 @@
             update_task(index, data);
             hide_task_detail();
         })
+
+        $detail_cancel.on('click', hide_task_detail);
     }
 
 
@@ -447,7 +459,7 @@
     * */
     function render_task_item(data, index) {
         // 重要！！！！
-        if (!data || !index) return;
+        if (!data || index === undefined) return;
         var list_item_tpl =
             '<div class="task-item" data-index="' + index + '">' +
             '<span><input class="complete" ' + (data.complete ? 'checked' : '') + ' type="checkbox"></span>' +
